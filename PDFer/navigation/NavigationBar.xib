@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationBar" customModule="PDFer" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="J3v-6f-cAf"/>
+                <outlet property="gridButton" destination="eQh-Qx-mBL" id="RCX-FW-inz"/>
                 <outlet property="searchButton" destination="KeD-Ey-MsM" id="naG-L7-UEo"/>
                 <outlet property="textField" destination="Xt2-h7-n0N" id="CgO-Jk-Nd3"/>
             </connections>
@@ -20,18 +21,33 @@
             <rect key="frame" x="0.0" y="0.0" width="1099" height="75"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50w-ma-EPu">
-                    <rect key="frame" x="20" y="26" width="13.5" height="23"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal">
-                        <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
-                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" scale="default" weight="medium"/>
-                    </state>
-                    <connections>
-                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="ap5-qn-v1A"/>
-                    </connections>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="21W-94-3Px">
+                    <rect key="frame" x="20" y="26" width="49" height="23"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50w-ma-EPu">
+                            <rect key="frame" x="0.0" y="0.0" width="13.5" height="23"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal">
+                                <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" scale="default" weight="medium"/>
+                            </state>
+                            <connections>
+                                <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="ap5-qn-v1A"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQh-Qx-mBL">
+                            <rect key="frame" x="29.5" y="2.5" width="19.5" height="18"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" backgroundImage="square.grid.2x2" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15"/>
+                            </state>
+                            <connections>
+                                <action selector="gridButtonPressed:" destination="-1" eventType="touchUpInside" id="apz-M1-5tJ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
                 <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="jar-q7-8GF">
                     <rect key="frame" x="905" y="25" width="174" height="25"/>
                     <subviews>
@@ -65,9 +81,9 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="jar-q7-8GF" secondAttribute="trailing" constant="20" id="5dB-DO-WaR"/>
-                <constraint firstItem="50w-ma-EPu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="DyS-1k-D5u"/>
-                <constraint firstItem="50w-ma-EPu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="oN9-sT-iS2"/>
+                <constraint firstItem="21W-94-3Px" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cuv-dw-SxP"/>
                 <constraint firstItem="jar-q7-8GF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="tRB-IJ-tdl"/>
+                <constraint firstItem="21W-94-3Px" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="y8e-lb-ugP"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="628.26086956521749" y="-175.11160714285714"/>
@@ -76,5 +92,6 @@
     <resources>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
     </resources>
 </document>

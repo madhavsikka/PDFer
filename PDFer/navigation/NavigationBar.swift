@@ -2,6 +2,7 @@ import UIKit
 
 protocol NavigationBarDelegate {
     func didPressBackButton(_ navigationBar: NavigationBar)
+    func didPressGridButton(_ navigationBar: NavigationBar)
     func didChangeTextField(_ navigationBar: NavigationBar, toSearch text: String?)
 }
 
@@ -11,6 +12,7 @@ class NavigationBar: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var gridButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,5 +67,9 @@ class NavigationBar: UIView {
     
     @IBAction func textFieldChanged(_ sender: UITextField) {
         delegate?.didChangeTextField(self, toSearch: sender.text)
+    }
+    
+    @IBAction func gridButtonPressed(_ sender: UIButton) {
+        delegate?.didPressGridButton(self)
     }
 }

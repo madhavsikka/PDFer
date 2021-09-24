@@ -16,6 +16,7 @@
 		A20DA8D926FADC2B00A4B760 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A20DA8D726FADC2B00A4B760 /* LaunchScreen.storyboard */; };
 		A20DA8E626FB114200A4B760 /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20DA8E526FB114200A4B760 /* NavigationBar.xib */; };
 		A20DA8EA26FB12C500A4B760 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20DA8E926FB12C500A4B760 /* NavigationBar.swift */; };
+		A2F0D28526FDD4E8006BE1E4 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F0D28426FDD4E8006BE1E4 /* GridViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		A20DA8DA26FADC2B00A4B760 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A20DA8E526FB114200A4B760 /* NavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationBar.xib; sourceTree = "<group>"; };
 		A20DA8E926FB12C500A4B760 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		A2F0D28426FDD4E8006BE1E4 /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		A20DA8C926FADC2A00A4B760 /* PDFer */ = {
 			isa = PBXGroup;
 			children = (
+				A2F0D28326FDD4D5006BE1E4 /* thumbnail */,
 				A20DA8E226FB0D6200A4B760 /* navigation */,
 				A20DA8CA26FADC2A00A4B760 /* AppDelegate.swift */,
 				A20DA8CC26FADC2A00A4B760 /* DocumentBrowserViewController.swift */,
@@ -82,6 +85,14 @@
 				A20DA8E926FB12C500A4B760 /* NavigationBar.swift */,
 			);
 			path = navigation;
+			sourceTree = "<group>";
+		};
+		A2F0D28326FDD4D5006BE1E4 /* thumbnail */ = {
+			isa = PBXGroup;
+			children = (
+				A2F0D28426FDD4E8006BE1E4 /* GridViewController.swift */,
+			);
+			path = thumbnail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +171,7 @@
 				A20DA8CF26FADC2A00A4B760 /* DocumentViewController.swift in Sources */,
 				A20DA8CD26FADC2A00A4B760 /* DocumentBrowserViewController.swift in Sources */,
 				A20DA8CB26FADC2A00A4B760 /* AppDelegate.swift in Sources */,
+				A2F0D28526FDD4E8006BE1E4 /* GridViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

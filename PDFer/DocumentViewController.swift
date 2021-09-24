@@ -60,4 +60,12 @@ extension DocumentViewController: NavigationBarDelegate {
     func didPressBackButton(_ navigationBar: NavigationBar) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func didPressGridButton(_ navigationBar: NavigationBar) {
+        print("Grid")
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let GridViewController = storyBoard.instantiateViewController(withIdentifier: "GridViewController") as! GridViewController
+        GridViewController.modalPresentationStyle = .fullScreen
+        present(GridViewController, animated: true, completion: nil)
+    }
 }
