@@ -1,12 +1,5 @@
-//
-//  DocumentBrowserViewController.swift
-//  PDFTemp
-//
-//  Created by Madhav Sikka on 22/09/21.
-//
-
 import UIKit
-
+import PDFKit
 
 class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocumentBrowserViewControllerDelegate {
     
@@ -17,6 +10,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         
         allowsDocumentCreation = true
         allowsPickingMultipleItems = false
+        
         
         // Update the style of the UIDocumentBrowserViewController
         // browserUserInterfaceStyle = .dark
@@ -65,9 +59,11 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let documentViewController = storyBoard.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
-        documentViewController.document = Document(fileURL: documentURL)
         documentViewController.modalPresentationStyle = .fullScreen
-        
+        if documentURL.startAccessingSecurityScopedResource() {
+            documentViewController.pdfDocument = PDFDocument(url: documentURL)
+            documentURL.stopAccessingSecurityScopedResource()
+        }
         present(documentViewController, animated: true, completion: nil)
     }
 }

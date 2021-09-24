@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationBar" customModule="PDFer" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="J3v-6f-cAf"/>
+                <outlet property="searchButton" destination="KeD-Ey-MsM" id="naG-L7-UEo"/>
+                <outlet property="textField" destination="Xt2-h7-n0N" id="CgO-Jk-Nd3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="1099" height="75"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50w-ma-EPu">
+                    <rect key="frame" x="20" y="26" width="13.5" height="23"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal">
+                        <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" scale="default" weight="medium"/>
+                    </state>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="ap5-qn-v1A"/>
+                    </connections>
+                </button>
+                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="jar-q7-8GF">
+                    <rect key="frame" x="905" y="25" width="174" height="25"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeD-Ey-MsM">
+                            <rect key="frame" x="0.0" y="0.0" width="17" height="25"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="magnifyingglass" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
+                            </state>
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="-1" eventType="touchUpInside" id="rlU-Tn-JZw"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xt2-h7-n0N">
+                            <rect key="frame" x="24" y="0.0" width="150" height="25"/>
+                            <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="4cL-Y6-Bnr"/>
+                                <constraint firstAttribute="height" constant="25" id="JoO-6D-Uu2"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="textFieldChanged:" destination="-1" eventType="editingChanged" id="reY-GC-ea6"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="jar-q7-8GF" secondAttribute="trailing" constant="20" id="5dB-DO-WaR"/>
+                <constraint firstItem="50w-ma-EPu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="DyS-1k-D5u"/>
+                <constraint firstItem="50w-ma-EPu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="oN9-sT-iS2"/>
+                <constraint firstItem="jar-q7-8GF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="tRB-IJ-tdl"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="628.26086956521749" y="-175.11160714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+    </resources>
+</document>

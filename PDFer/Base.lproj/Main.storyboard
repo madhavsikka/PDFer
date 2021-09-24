@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Document Browser View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="DocumentBrowserViewController" customModule="PDFTemp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="0fo-ii-Aj5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="26" y="654"/>
+        </scene>
+        <!--Document View Controller-->
+        <scene sceneID="dkP-xk-x6W">
+            <objects>
+                <viewController storyboardIdentifier="DocumentViewController" id="M2k-L8-Olo" customClass="DocumentViewController" customModule="PDFTemp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SIE-Uh-Zny">
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfH-It-zSd">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1160"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dr0-RT-zlT" customClass="NavigationBar" customModule="PDFTemp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="50"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="hPa-l0-tKj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BoZ-jc-2Y8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OfH-It-zSd" firstAttribute="leading" secondItem="BoZ-jc-2Y8" secondAttribute="leading" id="18c-OA-AsN"/>
+                            <constraint firstItem="BoZ-jc-2Y8" firstAttribute="trailing" secondItem="Dr0-RT-zlT" secondAttribute="trailing" id="9y6-TJ-lTv"/>
+                            <constraint firstItem="Dr0-RT-zlT" firstAttribute="leading" secondItem="BoZ-jc-2Y8" secondAttribute="leading" id="Pbc-xX-of0"/>
+                            <constraint firstItem="OfH-It-zSd" firstAttribute="top" secondItem="BoZ-jc-2Y8" secondAttribute="top" id="Twq-o3-CA3"/>
+                            <constraint firstItem="Dr0-RT-zlT" firstAttribute="top" secondItem="BoZ-jc-2Y8" secondAttribute="top" id="kIR-Ha-I82"/>
+                            <constraint firstItem="BoZ-jc-2Y8" firstAttribute="trailing" secondItem="OfH-It-zSd" secondAttribute="trailing" id="mIZ-yr-Nj2"/>
+                            <constraint firstItem="BoZ-jc-2Y8" firstAttribute="bottom" secondItem="OfH-It-zSd" secondAttribute="bottom" id="pVw-8R-liv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mainView" destination="OfH-It-zSd" id="wnf-oy-Enb"/>
+                        <outlet property="navigationBar" destination="Dr0-RT-zlT" id="1F6-3G-Boc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rl9-ES-qQn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1031" y="654"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
