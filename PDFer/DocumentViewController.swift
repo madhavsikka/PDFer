@@ -62,10 +62,10 @@ extension DocumentViewController: NavigationBarDelegate {
     }
     
     func didPressGridButton(_ navigationBar: NavigationBar) {
-        print("Grid")
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let GridViewController = storyBoard.instantiateViewController(withIdentifier: "GridViewController") as! GridViewController
         GridViewController.modalPresentationStyle = .fullScreen
+        GridViewController.pdfView = pdfView
         present(GridViewController, animated: true, completion: nil)
     }
 }

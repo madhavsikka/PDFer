@@ -16,7 +16,10 @@
 		A20DA8D926FADC2B00A4B760 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A20DA8D726FADC2B00A4B760 /* LaunchScreen.storyboard */; };
 		A20DA8E626FB114200A4B760 /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20DA8E526FB114200A4B760 /* NavigationBar.xib */; };
 		A20DA8EA26FB12C500A4B760 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20DA8E926FB12C500A4B760 /* NavigationBar.swift */; };
+		A290208A2701F818005BD01D /* GridCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29020892701F818005BD01D /* GridCellModel.swift */; };
+		A2DFEF1A2701D1040013C0BD /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFEF182701D1040013C0BD /* GridCell.swift */; };
 		A2F0D28526FDD4E8006BE1E4 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F0D28426FDD4E8006BE1E4 /* GridViewController.swift */; };
+		A2F0D28726FDFEF2006BE1E4 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A2F0D28626FDFEF2006BE1E4 /* sample.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +34,10 @@
 		A20DA8DA26FADC2B00A4B760 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A20DA8E526FB114200A4B760 /* NavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationBar.xib; sourceTree = "<group>"; };
 		A20DA8E926FB12C500A4B760 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		A29020892701F818005BD01D /* GridCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCellModel.swift; sourceTree = "<group>"; };
+		A2DFEF182701D1040013C0BD /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
 		A2F0D28426FDD4E8006BE1E4 /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
+		A2F0D28626FDFEF2006BE1E4 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +70,8 @@
 		A20DA8C926FADC2A00A4B760 /* PDFer */ = {
 			isa = PBXGroup;
 			children = (
-				A2F0D28326FDD4D5006BE1E4 /* thumbnail */,
+				A2F0D28626FDFEF2006BE1E4 /* sample.pdf */,
+				A2F0D28326FDD4D5006BE1E4 /* grid */,
 				A20DA8E226FB0D6200A4B760 /* navigation */,
 				A20DA8CA26FADC2A00A4B760 /* AppDelegate.swift */,
 				A20DA8CC26FADC2A00A4B760 /* DocumentBrowserViewController.swift */,
@@ -87,12 +94,14 @@
 			path = navigation;
 			sourceTree = "<group>";
 		};
-		A2F0D28326FDD4D5006BE1E4 /* thumbnail */ = {
+		A2F0D28326FDD4D5006BE1E4 /* grid */ = {
 			isa = PBXGroup;
 			children = (
 				A2F0D28426FDD4E8006BE1E4 /* GridViewController.swift */,
+				A2DFEF182701D1040013C0BD /* GridCell.swift */,
+				A29020892701F818005BD01D /* GridCellModel.swift */,
 			);
-			path = thumbnail;
+			path = grid;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +165,7 @@
 				A20DA8D626FADC2B00A4B760 /* Assets.xcassets in Resources */,
 				A20DA8D426FADC2A00A4B760 /* Main.storyboard in Resources */,
 				A20DA8E626FB114200A4B760 /* NavigationBar.xib in Resources */,
+				A2F0D28726FDFEF2006BE1E4 /* sample.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +179,9 @@
 				A20DA8EA26FB12C500A4B760 /* NavigationBar.swift in Sources */,
 				A20DA8D126FADC2A00A4B760 /* Document.swift in Sources */,
 				A20DA8CF26FADC2A00A4B760 /* DocumentViewController.swift in Sources */,
+				A2DFEF1A2701D1040013C0BD /* GridCell.swift in Sources */,
 				A20DA8CD26FADC2A00A4B760 /* DocumentBrowserViewController.swift in Sources */,
+				A290208A2701F818005BD01D /* GridCellModel.swift in Sources */,
 				A20DA8CB26FADC2A00A4B760 /* AppDelegate.swift in Sources */,
 				A2F0D28526FDD4E8006BE1E4 /* GridViewController.swift in Sources */,
 			);
