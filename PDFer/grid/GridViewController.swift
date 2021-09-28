@@ -1,23 +1,29 @@
 import UIKit
 import PDFKit
 
+protocol GridViewControllerDelegate: AnyObject {
+    func didPressGridCell(_ gridViewController: GridViewController, with index: Int)
+}
+
 class GridViewController: UICollectionViewController {
     
+    static let identifier: String = "GridViewController"
     private let spacing: CGFloat = 8
-    private let cellWidth: CGFloat = 200
     private let cellsPerRowPotrait: CGFloat = 4
     private let cellsPerRowLandscape: CGFloat = 6
     private var pageHeightToWidthRatio: CGFloat = 1
     
-    var pdfView = PDFView()
+    weak var delegate: GridViewControllerDelegate?
+    var pdfView: PDFView?
     
     @IBOutlet weak var gridCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureGridLayout()
-        let pageWidth = pdfView.document?.page(at: 0)?.bounds(for: .mediaBox).width
-        let pageHeight = pdfView.document?.page(at: 0)?.bounds(for: .mediaBox).height
+        configureGestures()
+        let pageWidth = pdfView?.document?.page(at: 0)?.bounds(for: PDFDisplayBox.bleedBox).size.width
+        let pageHeight = pdfView?.document?.page(at: 0)?.bounds(for: PDFDisplayBox.bleedBox).size.height
         if let safePageWidth = pageWidth, let safePageHeight = pageHeight {
             pageHeightToWidthRatio = safePageHeight / safePageWidth
         }
@@ -33,24 +39,47 @@ class GridViewController: UICollectionViewController {
         gridCollectionView.setCollectionViewLayout(layout, animated: true)
     }
     
+    private func configureGestures() {
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.gridCellLongPressed))
+        self.gridCollectionView.addGestureRecognizer(longPress)
+    }
+    
+    // Detect Long Presses on Grid Cell
+    @objc private func gridCellLongPressed(sender : UILongPressGestureRecognizer) {
+        if sender.state == UIGestureRecognizer.State.began {
+            let touchPoint = sender.location(in: collectionView)
+            if let index = collectionView.indexPathForItem(at: touchPoint)?[1] {
+                print(index)
+            }
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let pageCount = pdfView.document?.pageCount {
+        if let pageCount = pdfView?.document?.pageCount {
             return pageCount
         }
         return 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GridCell.identifier, for: indexPath) as! GridCell
         let cgSizeForCell = getCGSizeForCell()
         DispatchQueue.global(qos: .userInitiated).async {
-            let pdfPage = self.pdfView.document?.page(at: indexPath.item)
-            let thumbnail = pdfPage?.thumbnail(of: cgSizeForCell, for: PDFDisplayBox.mediaBox)
+            // Perform on background thread
+            weak var pdfPage = self.pdfView?.document?.page(at: indexPath.item)
+            let thumbnail = pdfPage?.thumbnail(of: cgSizeForCell, for: PDFDisplayBox.bleedBox)
             DispatchQueue.main.async {
+                // Perform on main thread
                 cell.configure(with: GridCellModel(image: thumbnail))
             }
         }
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didPressGridCell(self, with: indexPath.item)
+        self.dismiss(animated: true, completion: nil)
     }
     
     private func getCGSizeForCell() -> CGSize {

@@ -1,6 +1,6 @@
 import UIKit
 
-protocol NavigationBarDelegate {
+protocol NavigationBarDelegate: AnyObject {
     func didPressBackButton(_ navigationBar: NavigationBar)
     func didPressGridButton(_ navigationBar: NavigationBar)
     func didChangeTextField(_ navigationBar: NavigationBar, toSearch text: String?)
@@ -8,7 +8,7 @@ protocol NavigationBarDelegate {
 
 class NavigationBar: UIView {
     
-    var delegate: NavigationBarDelegate?
+    weak var delegate: NavigationBarDelegate?
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var textField: UITextField!
@@ -46,12 +46,29 @@ class NavigationBar: UIView {
         textField.leftViewMode = .always
     }
     
+    func toggleVisibility() {
+        if(!self.isHidden) {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.alpha = 0
+            }) { (finished) in
+                self.isHidden = finished
+            }
+        } else {
+            self.alpha = 0
+            self.isHidden = false
+            UIView.animate(withDuration: 0.3) {
+                self.alpha = 1
+            }
+        }
+    }
+    
     @IBAction func searchButtonPressed(_ sender: UIButton) {
-        UIView.transition(with: textField, duration: 0.4,
+        UIView.transition(with: self.textField, duration: 0.2,
                           options: .transitionCrossDissolve,
                           animations: {
                             self.textField.isHidden = !self.textField.isHidden
                           })
+        
         if searchButton.backgroundColor == .white {
             searchButton.backgroundColor = .clear
             searchButton.tintColor = .white

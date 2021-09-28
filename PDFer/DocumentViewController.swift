@@ -4,25 +4,35 @@ import PDFKit
 class DocumentViewController: UIViewController {
     
     let pdfView = PDFView()
-    var pdfDocument: PDFDocument?
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var navigationBar: NavigationBar!
     
-    private func configurePdfView() {
-        pdfView.autoresizesSubviews = true
-        pdfView.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleTopMargin, .flexibleLeftMargin]
-        pdfView.autoScales = true
-        pdfView.highlightedSelections = [PDFSelection]()
-    }
-    
     override func viewDidLoad() {
         navigationBar.delegate = self
         configurePdfView()
+        configurePdfViewGestures()
         mainView.addSubview(pdfView)
-        if let safePdfDocument = pdfDocument {
-            pdfView.document = safePdfDocument
-            pdfView.document?.delegate = self
+    }
+    
+    private func configurePdfView() {
+        pdfView.autoresizesSubviews = true
+        // pdfView.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleTopMargin, .flexibleLeftMargin]
+        pdfView.autoScales = false
+        pdfView.clipsToBounds = true
+        pdfView.highlightedSelections = [PDFSelection]()
+    }
+    
+    private func configurePdfViewGestures() {
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.pdfViewTapped))
+        singleTap.numberOfTouchesRequired = 1
+        singleTap.numberOfTapsRequired = 1
+        self.pdfView.addGestureRecognizer(singleTap)
+    }
+    
+    @objc func pdfViewTapped(sender : UITapGestureRecognizer) {
+        if(sender.state == UIGestureRecognizer.State.ended) {
+            navigationBar.toggleVisibility()
         }
     }
     
@@ -63,9 +73,22 @@ extension DocumentViewController: NavigationBarDelegate {
     
     func didPressGridButton(_ navigationBar: NavigationBar) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let GridViewController = storyBoard.instantiateViewController(withIdentifier: "GridViewController") as! GridViewController
-        GridViewController.modalPresentationStyle = .fullScreen
-        GridViewController.pdfView = pdfView
-        present(GridViewController, animated: true, completion: nil)
+        let gridViewController = storyBoard.instantiateViewController(withIdentifier: GridViewController.identifier) as! GridViewController
+        gridViewController.modalPresentationStyle = .fullScreen
+        gridViewController.pdfView = pdfView
+        gridViewController.delegate = self
+        present(gridViewController, animated: true, completion: nil)
     }
+}
+
+//MARK: - GridViewControllerDelegate
+
+extension DocumentViewController: GridViewControllerDelegate {
+    
+    func didPressGridCell(_ gridViewController: GridViewController, with index: Int) {
+        if let targetPdfPage = pdfView.document?.page(at: index) {
+            pdfView.go(to: targetPdfPage)
+        }
+    }
+    
 }
