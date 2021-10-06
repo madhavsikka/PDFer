@@ -93,8 +93,8 @@ class GridViewController: UICollectionViewController, UIPopoverPresentationContr
             let thumbnail = pdfPage?.thumbnail(of: cgSizeForCell, for: PDFDisplayBox.bleedBox)
             DispatchQueue.main.async {
                 // Perform on main thread
+                // cell.setImage(with: thumbnail) For GridCell2
                 cell.configure(with: GridCellModel(image: thumbnail))
-                //                cell.setImage(with: thumbnail) For GridCell2
             }
         }
         return cell
