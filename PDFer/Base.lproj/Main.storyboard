@@ -103,6 +103,49 @@
             </objects>
             <point key="canvasLocation" x="474" y="1288"/>
         </scene>
+        <!--Grid Popover View Controller-->
+        <scene sceneID="nGL-7R-89b">
+            <objects>
+                <viewController storyboardIdentifier="GridPopoverViewController" id="7lo-sz-EZ1" customClass="GridPopoverViewController" customModule="PDFer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w76-60-Sxv">
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YJE-Tw-MEK">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1160"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PopoverCell" id="zLu-CC-aRx">
+                                        <rect key="frame" x="0.0" y="24.5" width="820" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zLu-CC-aRx" id="h0v-KH-URQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="820" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                        </accessibility>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pxG-d4-1mz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pxG-d4-1mz" firstAttribute="trailing" secondItem="YJE-Tw-MEK" secondAttribute="trailing" id="1VR-zG-4M8"/>
+                            <constraint firstItem="YJE-Tw-MEK" firstAttribute="top" secondItem="pxG-d4-1mz" secondAttribute="top" id="Qmd-YZ-TdR"/>
+                            <constraint firstItem="YJE-Tw-MEK" firstAttribute="leading" secondItem="pxG-d4-1mz" secondAttribute="leading" id="rZZ-BW-KkQ"/>
+                            <constraint firstItem="pxG-d4-1mz" firstAttribute="bottom" secondItem="YJE-Tw-MEK" secondAttribute="bottom" id="xbq-BC-mCx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="YJE-Tw-MEK" id="kFU-qy-dc4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QFU-Mi-WuX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1287" y="1286"/>
+        </scene>
     </scenes>
     <resources>
         <namedColor name="AccentColor">

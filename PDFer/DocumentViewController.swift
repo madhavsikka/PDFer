@@ -4,7 +4,7 @@ import PDFKit
 class DocumentViewController: UIViewController {
     
     let pdfView = PDFView()
-    
+    var pdfUrl: URL?
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var navigationBar: NavigationBar!
     
@@ -76,6 +76,7 @@ extension DocumentViewController: NavigationBarDelegate {
         let gridViewController = storyBoard.instantiateViewController(withIdentifier: GridViewController.identifier) as! GridViewController
         gridViewController.modalPresentationStyle = .fullScreen
         gridViewController.pdfView = pdfView
+        gridViewController.pdfUrl = pdfUrl
         gridViewController.delegate = self
         present(gridViewController, animated: true, completion: nil)
     }

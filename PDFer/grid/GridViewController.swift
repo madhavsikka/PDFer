@@ -5,16 +5,16 @@ protocol GridViewControllerDelegate: AnyObject {
     func didPressGridCell(_ gridViewController: GridViewController, with index: Int)
 }
 
-class GridViewController: UICollectionViewController {
+class GridViewController: UICollectionViewController, UIPopoverPresentationControllerDelegate {
     
     static let identifier: String = "GridViewController"
     private let spacing: CGFloat = 8
     private let cellsPerRowPotrait: CGFloat = 4
     private let cellsPerRowLandscape: CGFloat = 6
     private var pageHeightToWidthRatio: CGFloat = 1
-    
     weak var delegate: GridViewControllerDelegate?
     var pdfView: PDFView?
+    var pdfUrl: URL?
     
     @IBOutlet weak var gridCollectionView: UICollectionView!
     
@@ -35,6 +35,7 @@ class GridViewController: UICollectionViewController {
         gridCollectionView.dataSource = self
         gridCollectionView.contentInsetAdjustmentBehavior = .always
         gridCollectionView.frame = view.bounds
+        gridCollectionView.allowsMultipleSelection = true
         let layout = UICollectionViewFlowLayout()
         gridCollectionView.setCollectionViewLayout(layout, animated: true)
     }
@@ -46,12 +47,33 @@ class GridViewController: UICollectionViewController {
     
     // Detect Long Presses on Grid Cell
     @objc private func gridCellLongPressed(sender : UILongPressGestureRecognizer) {
+        
         if sender.state == UIGestureRecognizer.State.began {
+            
             let touchPoint = sender.location(in: collectionView)
-            if let index = collectionView.indexPathForItem(at: touchPoint)?[1] {
-                print(index)
-            }
+            guard let indexPath = collectionView.indexPathForItem(at: touchPoint) else { return }
+            let cell = collectionView.cellForItem(at: indexPath)
+            cell?.layer.borderColor = UIColor.yellow.cgColor
+            cell?.layer.borderWidth = 6
+            
+            //            let gridPopoverViewController = self.storyboard?.instantiateViewController(withIdentifier: GridPopoverViewController.identifier) as! GridPopoverViewController
+            //            gridPopoverViewController.modalPresentationStyle = .popover
+            //            gridPopoverViewController.delegate = self
+            //            gridPopoverViewController.gridIndexPath = indexPath
+            //
+            //            // Configure Popover
+            //            let popoverPresentationController = gridPopoverViewController.popoverPresentationController
+            //            popoverPresentationController?.permittedArrowDirections = .any
+            //            popoverPresentationController?.sourceView = self.view
+            //            popoverPresentationController?.sourceRect = collectionView.cellForItem(at: indexPath)?.frame ?? CGRect.zero
+            //            popoverPresentationController?.delegate = self
+            //            present(gridPopoverViewController, animated: true, completion: nil)
         }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didPressGridCell(self, with: indexPath.item)
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -72,14 +94,10 @@ class GridViewController: UICollectionViewController {
             DispatchQueue.main.async {
                 // Perform on main thread
                 cell.configure(with: GridCellModel(image: thumbnail))
+                //                cell.setImage(with: thumbnail) For GridCell2
             }
         }
         return cell
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didPressGridCell(self, with: indexPath.item)
-        self.dismiss(animated: true, completion: nil)
     }
     
     private func getCGSizeForCell() -> CGSize {
@@ -126,5 +144,29 @@ extension GridViewController: UICollectionViewDelegateFlowLayout {
             layout.invalidateLayout()
         }
     }
+}
+
+//MARK: - GridPopoverViewControllerDelegate
+
+extension GridViewController: GridPopoverViewControllerDelegate {
     
+    func didPressAddPageButton(_ gridPopoverViewController: GridPopoverViewController, with gridIndexPath: IndexPath?) {
+        if let indexPath = gridIndexPath {
+            print("Add")
+            pdfView?.document?.insert(PDFPage(), at: indexPath.item)
+            if let url = pdfUrl {
+                pdfView?.document?.write(to: url)
+            }
+        }
+    }
+    
+    func didPressDeletePageButton(_ gridPopoverViewController: GridPopoverViewController, with gridIndexPath: IndexPath?) {
+        if let indexPath = gridIndexPath {
+            print("Delete")
+            pdfView?.document?.removePage(at: indexPath.item)
+            if let url = pdfUrl {
+                pdfView?.document?.write(to: url)
+            }
+        }
+    }
 }

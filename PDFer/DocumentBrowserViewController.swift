@@ -61,6 +61,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         let documentViewController = storyBoard.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
         documentViewController.modalPresentationStyle = .fullScreen
         if documentURL.startAccessingSecurityScopedResource() {
+            documentViewController.pdfUrl = documentURL
             documentViewController.pdfView.document = PDFDocument(url: documentURL)
             documentURL.stopAccessingSecurityScopedResource()
         }
